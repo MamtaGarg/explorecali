@@ -1,0 +1,28 @@
+[
+	{
+		"id": "101",
+		"packageType" : "Backpack Cal",
+		"title": "Big Sur Retreat",
+		"blurb": "Big sur is big country",
+		"description" : "The region know as Big Sur is like Yosemite's younger cousion",
+		"bullets" : "Accomodations at the historic Big Sur RIver Inn, Privately guided hikes through any of the 5 surrounding national parks.",
+		"difficulty" : "Medium",
+		"length": "3 days",
+		"price": "750",
+		"region": "Central Caost",
+		"keywords" : "Hiking, National Parks, Big Sur"
+	},
+	{
+		"id": "102",
+		"packageType" : "Backpack Cal",
+		"title": "In the steps of John Muir",
+		"blurb": "Follow in the steps on John Muir, famous naturalist and founder of the Sierra Club",
+		"description" : "John Muir famoulsy walked from San Franscisco to Yosemite, an astounding 300 miles.",
+		"bullets" : "Guided hike of the first 37 miles of the John Muir Trail.",
+		"difficulty": "Difficult",
+		"length": "3 days",
+		"price": "600",
+		"region": "Northern California",
+		"keywords" : "Hiking, National Parks, Camping"
+	}
+]
