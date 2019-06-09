@@ -11,7 +11,7 @@
 	<groupId>com.example.ec</groupId>
 	<artifactId>explorecali</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>explorecali-1</name>
+	<name>explorecali</name>
 	<description>Explore California MicroServices</description>
 
 	<properties>
