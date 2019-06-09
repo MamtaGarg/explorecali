@@ -20,6 +20,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootApplication
 public class ExplorecaliApplication implements CommandLineRunner {
 
+	// CommandLineRunner implemented because class doesn't have access to service
+	// class as they are static.
+
 	@Autowired
 	private TourService tourService;
 
@@ -30,6 +33,10 @@ public class ExplorecaliApplication implements CommandLineRunner {
 		SpringApplication.run(ExplorecaliApplication.class, args);
 	}
 
+	/**
+	 * Before accepting any web request, this run method will be executed.
+	 * It is setting up the database and then get back the result from DB.
+	 */
 	@Override
 	public void run(String... args) throws Exception {
 		tourPackageService.createTourPackage("BC", "Backpack Cal");
@@ -42,17 +49,23 @@ public class ExplorecaliApplication implements CommandLineRunner {
 		tourPackageService.createTourPackage("SC", "Snowboard Cali");
 		tourPackageService.createTourPackage("TC", "Taste of California");
 		tourPackageService.lookup().forEach(tourPackage -> System.out.println(tourPackage));
-		TourFromFile.importTours().forEach(t -> tourService.createTour(Integer.parseInt(t.id), t.title, t.description, t.blurb, Integer.parseInt(t.price), t.length, t.bullets, t.keywords, t.packageType, Difficulty.valueOf(t.difficulty), Region.findByLabel(t.region)));
+		TourFromFile.importTours()
+				.forEach(t -> tourService.createTour(Integer.parseInt(t.id), t.title, t.description, t.blurb,
+						Integer.parseInt(t.price), t.length, t.bullets, t.keywords, t.packageType,
+						Difficulty.valueOf(t.difficulty), Region.findByLabel(t.region)));
 		System.out.println("Number of tours : " + tourService.total());
 	}
 
 	static class TourFromFile {
 
 		private String id, packageType, title, description, blurb, price, length, bullets, keywords, difficulty, region;
-		
+
 		static List<TourFromFile> importTours() throws IOException {
-			return new ObjectMapper().setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY).readValue(TourFromFile.class.getResourceAsStream("/ExploreCalifornia.json"), new TypeReference<List<TourFromFile>>() {});
-			
+			return new ObjectMapper().setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY).readValue(
+					TourFromFile.class.getResourceAsStream("/ExploreCalifornia.json"),
+					new TypeReference<List<TourFromFile>>() {
+					});
+
 		}
 	}
 
